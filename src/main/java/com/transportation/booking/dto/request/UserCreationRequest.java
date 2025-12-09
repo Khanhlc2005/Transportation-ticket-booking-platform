@@ -17,4 +17,5 @@ public class UserCreationRequest {
     private String firstName;
     private String lastName;
     private LocalDate dob;
+    String phone;
 }

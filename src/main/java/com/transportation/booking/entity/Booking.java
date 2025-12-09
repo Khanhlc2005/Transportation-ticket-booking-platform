@@ -28,4 +28,11 @@ public class Booking {
 
     LocalDateTime bookingTime; // Thời gian đặt vé
     String status; // Trạng thái: CONFIRMED (Thành công)
+    String seatNumber;
+
+    @Column(name = "passenger_name")
+    String passengerName; // Tên người đi (VD: Mẹ tôi)
+
+    @Column(name = "passenger_phone")
+    String passengerPhone; // SĐT người đi (VD: 09123...)
 }

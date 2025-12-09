@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import java.time.LocalDateTime;
+import java.util.List; // <--- Nhớ import dòng này
 
 @Entity
 @Getter
@@ -18,13 +19,20 @@ public class Trip {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    String departure; // Điểm đi (VD: Hà Nội)
-    String destination; // Điểm đến (VD: Đà Nẵng)
+    String departure;
+    String destination;
 
-    LocalDateTime departureTime; // Thời gian khởi hành
+    LocalDateTime departureTime;
 
-    Double price; // Giá vé
+    @Column(name = "bus_operator")
+    String busOperator;
 
-    int totalSeats; // Tổng số ghế
-    int availableSeats; // Số ghế còn trống
+    Double price;
+
+    int totalSeats;
+    int availableSeats;
+
+    // TÔ MÀU GHẾ ---
+    @Transient
+            List<String> bookedSeats;
 }

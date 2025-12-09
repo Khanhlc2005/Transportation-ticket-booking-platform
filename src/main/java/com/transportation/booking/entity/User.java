@@ -26,6 +26,7 @@ public class User {
     String firstName;
     String lastName;
     LocalDate dob;
+    String phone;
 
     @Enumerated(EnumType.STRING)
     Role role;

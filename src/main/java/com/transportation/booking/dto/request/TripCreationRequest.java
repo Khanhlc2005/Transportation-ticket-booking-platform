@@ -13,4 +13,5 @@ public class TripCreationRequest {
     private LocalDateTime departureTime;
     private Double price;
     private int totalSeats;
+    private String busOperator;
 }

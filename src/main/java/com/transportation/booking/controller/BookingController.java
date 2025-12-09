@@ -1,5 +1,6 @@
 package com.transportation.booking.controller;
 
+import com.transportation.booking.dto.request.BookingRequest;
 import com.transportation.booking.dto.response.ApiResponse;
 import com.transportation.booking.entity.Booking;
 import com.transportation.booking.service.BookingService;
@@ -16,9 +17,9 @@ public class BookingController {
 
     // API Đặt vé (POST)
     @PostMapping("/{tripId}")
-    public ApiResponse<Booking> bookTicket(@PathVariable Long tripId) {
+    public ApiResponse<Booking> bookTicket(@PathVariable Long tripId, @RequestBody BookingRequest request) {
         return ApiResponse.<Booking>builder()
-                .result(bookingService.createBooking(tripId))
+                .result(bookingService.createBooking(tripId, request))
                 .build();
     }
 

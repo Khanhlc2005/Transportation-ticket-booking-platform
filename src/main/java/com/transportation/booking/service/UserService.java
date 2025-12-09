@@ -33,9 +33,17 @@ public class UserService {
         if (userRepository.existsByUsername(request.getUsername()))
             throw new AppException(ErrorCode.USER_EXISTED);
 
+        // 1. Map dữ liệu cơ bản
         User user = userMapper.toUser(request);
+
+        // 2. Mã hóa mật khẩu
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(Role.USER); // Mặc định là USER
+
+        // 3. LƯU SỐ ĐIỆN THOẠI (Quan trọng)
+        user.setPhone(request.getPhone());
+
+        // 4. Set Role (SỬA LẠI CHỖ NÀY THÀNH SỐ ÍT CHO KHỚP VỚI BẠN)
+        user.setRole(Role.USER);
 
         return userMapper.toUserResponse(userRepository.save(user));
     }
