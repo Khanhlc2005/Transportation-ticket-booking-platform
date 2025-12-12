@@ -28,4 +28,13 @@ public class TripController {
                 .result(tripService.getAllTrips())
                 .build();
     }
+
+    // API Xóa chuyến xe
+    @DeleteMapping("/{tripId}")
+    public ApiResponse<String> deleteTrip(@PathVariable Long tripId) {
+        tripService.deleteTrip(tripId);
+        return ApiResponse.<String>builder()
+                .result("Chuyến xe đã được xóa thành công")
+                .build();
+    }
 }

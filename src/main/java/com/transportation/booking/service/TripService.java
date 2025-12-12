@@ -54,4 +54,9 @@ public class TripService {
 
         return trips;
     }
+
+    public void deleteTrip(Long id) {
+        tripRepository.deleteById(id);
+    }
+
 }

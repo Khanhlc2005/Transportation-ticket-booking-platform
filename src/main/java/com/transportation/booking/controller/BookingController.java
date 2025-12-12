@@ -30,4 +30,11 @@ public class BookingController {
                 .result(bookingService.getMyBookings())
                 .build();
     }
+    @DeleteMapping("/{bookingId}")
+    public ApiResponse<String> cancelBooking(@PathVariable Long bookingId) {
+        bookingService.cancelBooking(bookingId);
+        return ApiResponse.<String>builder()
+                .result("Hủy vé thành công")
+                .build();
+    }
 }

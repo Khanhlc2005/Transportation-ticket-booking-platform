@@ -86,4 +86,28 @@ public class BookingService {
 
         return bookingRepository.findAllByUser(user);
     }
+
+
+    @Transactional
+    public void cancelBooking(Long bookingId) {
+        // 1. Lấy user đang đăng nhập
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        // 2. Tìm vé
+        Booking booking = bookingRepository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Vé không tồn tại"));
+
+        // 3. Check xem vé này có phải của user đó không?
+        if (!booking.getUser().getUsername().equals(username)) {
+            throw new RuntimeException("Bạn không có quyền hủy vé này!");
+        }
+
+        // 4. Trả lại ghế cho chuyến xe (Cộng thêm 1)
+        Trip trip = booking.getTrip();
+        trip.setAvailableSeats(trip.getAvailableSeats() + 1);
+        tripRepository.save(trip);
+
+        // 5. Xóa vé vĩnh viễn
+        bookingRepository.delete(booking);
+    }
 }
