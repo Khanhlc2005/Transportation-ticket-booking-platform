@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Quản Lý Chuyến Xe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="adminPage">
+    <div class="main-container">
+        <header style="border-radius: 10px; margin-bottom: 20px;">
+            <div class="logo">MyTicket Admin</div>
+            <div onclick="logout()" class="btn-logout">Đăng xuất</div>
+        </header>
+
+        <div class="card">
+            <h3><i class="fa-solid fa-plus-circle"></i> Thêm Chuyến Xe</h3>
+            <form id="addTripForm" class="form-grid">
+                <div class="form-group"><label>Nhà xe</label><input type="text" id="company" required></div>
+                <div class="form-group"><label>Điểm đi</label><input type="text" id="from" required></div>
+                <div class="form-group"><label>Điểm đến</label><input type="text" id="to" required></div>
+                <div class="form-group"><label>Giờ chạy</label><input type="datetime-local" id="time" required></div>
+                <div class="form-group"><label>Giá vé</label><input type="number" id="price" required></div>
+                <div class="form-group"><label>Số ghế</label><input type="number" id="seats" value="40" required></div>
+                <div class="form-group"><button type="submit" class="btn-save">Lưu Chuyến</button></div>
+            </form>
+        </div>
+
+        <table>
+            <thead><tr><th>ID</th><th>Nhà xe</th><th>Hành trình</th><th>Thời gian</th><th>Giá vé</th><th>Ghế</th><th>Hành động</th></tr></thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
